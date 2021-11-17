@@ -6,33 +6,43 @@ org 100h
 INCLUDE 'emu8086.inc'   
 
 printn "Enter your first digit"
+
+;Save user input
 CALL scan_num
 printn
 
+;Move users input into the AX register
 MOV AX, CX
 
 print "Enter your second digit" 
 printn   
 
+;Save user input
 CALL scan_num
 printn 
 printn    
 
+;Move first user input to BX Register
 MOV BX, AX
 
+;Call the sum procedure
 CALL sum 
 printn 
 
+;Call the difference procedure
 CALL difference
 
-
+;Definitions
 define_scan_num 
 define_print_num
 define_print_num_uns
 ret
       
-      
-sum PROC    
+
+;Sum procedure definition      
+sum PROC  
+    
+    ;Add the first user input with the second    
     ADD AX, CX
     print "The sum is "
     CALL print_num
@@ -40,8 +50,13 @@ sum PROC
 sum ENDP  
 
 
-difference PROC   
+;Difference procedure definition
+difference PROC  
+    
+    ;Subtract first user input with second   
     SUB BX,CX 
+      
+    ;Move result to AX register to print using print_num
     MOV AX, BX
     print "The difference is "
     CALL print_num

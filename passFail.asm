@@ -5,14 +5,16 @@ INCLUDE 'EMU8086.INC'
 
 printn "Enter the students mark"
 
+;Reads what user inputed
 CALL scan_num   
 printn
 
 MOV AX, 50
 
-CMP CX, AX
-    JGE pass
-    JL fail
+;Check if users input saved in CX > AX of 50
+CMP CX, AX 
+    JGE pass ;If grade > 50 run pass
+    JL fail  ; else run fail
     
 pass:
     print "Pass" 
